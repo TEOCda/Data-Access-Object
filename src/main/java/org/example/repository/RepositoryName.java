@@ -1,4 +1,4 @@
-package org.example;
+package org.example.repository;
 
 
 import org.springframework.core.io.ClassPathResource;
@@ -13,16 +13,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Repository
-public class Repository {
+public class RepositoryName {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private String scriptSelectFileName = "select_product_name.sql";
     private String script = read(scriptSelectFileName);
 
-    public Repository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public RepositoryName(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-    protected List<String> getProductName(String name) {
+    public List<String> getProductName(String name) {
         return namedParameterJdbcTemplate.queryForList(script, Map.of("name", name), String.class);
     }
 
